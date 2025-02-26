@@ -483,36 +483,31 @@ public class GestorPersonajes {
             System.out.println("⚠️ No hay personajes disponibles.");
             return;
         }
-
+    
         Personaje jugador = seleccionarPersonaje(personajes, "🏰 ¿De quién quieres administrar el inventario? ");
         if (jugador == null) return;
-
-        List<Item> items = cargarItems();
-
+    
         jugador.mostrarInventario();
-
+    
         System.out.println("\n📜 Inventario de " + jugador.getNombre());
         System.out.println("1️⃣ Añadir objeto");
         System.out.println("2️⃣ Eliminar objeto");
         System.out.println("3️⃣ Salir");
-
+        System.out.print("🔹 Elige una opción: ");
+    
         int opcion = scanner.nextInt();
-        scanner.nextLine();
-
+        scanner.nextLine(); 
+    
         switch (opcion) {
             case 1 -> {
-                System.out.println("🔍 Lista de ítems disponibles:");
-                for (Item item : items) {
-                    System.out.println(item.getId() + " - " + item.getNombre());
-                }
-                System.out.print("📝 Introduce el ID del objeto a añadir: ");
-                String itemId = scanner.nextLine();
+                System.out.print("📝 Introduce el número del objeto a añadir: ");
+                String itemId = "item_" + scanner.nextLine().trim(); // Se concatena item_
                 jugador.agregarItem(itemId);
                 guardarPersonajes(personajes);
             }
             case 2 -> {
-                System.out.print("🗑 Introduce el ID del objeto a eliminar: ");
-                String itemId = scanner.nextLine();
+                System.out.print("🗑 Introduce el número del objeto a eliminar: ");
+                String itemId = "item_" + scanner.nextLine().trim(); // Se concatena item_
                 jugador.eliminarItem(itemId);
                 guardarPersonajes(personajes);
             }
@@ -520,6 +515,7 @@ public class GestorPersonajes {
             default -> System.out.println("❌ Opción inválida.");
         }
     }
+    
 
     private static void encontrarObjeto(Personaje jugador, Personaje enemigo) {
         List<Item> itemsDisponibles = cargarItems();

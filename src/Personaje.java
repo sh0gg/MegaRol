@@ -86,16 +86,44 @@ public class Personaje {
     public void mostrarInventario() {
         if (inventario.isEmpty()) {
             System.out.println("📭 " + nombre + " no tiene objetos en su inventario.");
-        } else {
-            System.out.println("🎒 Inventario de " + nombre + ":");
-            for (String itemId : inventario) {
-                System.out.println("- ID: " + itemId + " | Nombre: "/* + itemName*/);
-
-                // TO DO : inventario se instancia en la clase Persona, por lo que se pueden sacar la lista
-                // de IDs de items sin problema, pero... como importo la clase Item para tener una variable
-                // con el nombre del item?? estoy bloqueado :sigh:
+            return;
+        }
+    
+        List<Item> itemsDisponibles = GestorPersonajes.cargarItems();
+    
+        System.out.println("\n🎒 Inventario de " + nombre + ":");
+        System.out.println("──────────────────────────────────────────────────────────────────────────────");
+        System.out.printf("%-4s %-20s %-12s %8s %8s %12s%n", "ID", "Nombre del Ítem", "Tipo", "Fuerza", "Agilidad", "Constitución");
+        System.out.println("──────────────────────────────────────────────────────────────────────────────");
+    
+        for (String itemId : inventario) {
+            Item itemEncontrado = itemsDisponibles.stream()
+                    .filter(item -> item.getId().equals(itemId))
+                    .findFirst()
+                    .orElse(null);
+    
+            if (itemEncontrado != null) {
+                // Obtener solo el número del ID
+                String numeroId = itemId.replace("item_", "");
+    
+                // Truncar el nombre si es muy largo (máximo 18 caracteres)
+                String nombreItem = itemEncontrado.getNombre();
+                if (nombreItem.length() > 18) {
+                    nombreItem = nombreItem.substring(0, 15) + "...";
+                }
+    
+                System.out.printf("%-4s %-20s %-12s %8d %8d %12d%n",
+                        numeroId,
+                        nombreItem,
+                        itemEncontrado.getTipo(),
+                        itemEncontrado.getBonoFuerza(),
+                        itemEncontrado.getBonoAgilidad(),
+                        itemEncontrado.getBonoConstitucion());
+            } else {
+                System.out.printf("%-4s %-20s %-12s %8s %8s %12s%n", "???", "🔴 Item desconocido", "???", "?", "?", "?");
             }
         }
+        System.out.println("──────────────────────────────────────────────────────────────────────────────");
     }
 
     // 🔹 Calcular bonificaciones de los objetos equipados (basado en el archivo `items.json`)
