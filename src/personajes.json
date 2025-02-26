@@ -161,7 +161,10 @@
       "experiencia": 1180,
       "puntosVida": 82,
       "maxPuntosVida": 82,
-      "inventario": []
+      "inventario": [
+        "item_12"
+      ]
     }
-  ]
+  ],
+  "ultimaEjecucion": "2025-02-26T09:14:18.439390500"
 }

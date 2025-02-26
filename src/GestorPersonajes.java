@@ -313,6 +313,7 @@ public class GestorPersonajes {
         for (int i = 0; i < personajesVivos.size(); i++) {
             System.out.println((i + 1) + ". " + personajesVivos.get(i));
         }
+        System.out.println(" ");
 
         // Selección con validación
         int index = -1;
@@ -483,8 +484,12 @@ public class GestorPersonajes {
             return;
         }
 
-        Personaje jugador = personajes.get(0); // Selección rápida
+        Personaje jugador = seleccionarPersonaje(personajes, "🏰 ¿De quién quieres administrar el inventario? ");
+        if (jugador == null) return;
+
         List<Item> items = cargarItems();
+
+        jugador.mostrarInventario();
 
         System.out.println("\n📜 Inventario de " + jugador.getNombre());
         System.out.println("1️⃣ Añadir objeto");

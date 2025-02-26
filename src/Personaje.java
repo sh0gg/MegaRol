@@ -89,7 +89,11 @@ public class Personaje {
         } else {
             System.out.println("🎒 Inventario de " + nombre + ":");
             for (String itemId : inventario) {
-                System.out.println("- ID: " + itemId);
+                System.out.println("- ID: " + itemId + " | Nombre: "/* + itemName*/);
+
+                // TO DO : inventario se instancia en la clase Persona, por lo que se pueden sacar la lista
+                // de IDs de items sin problema, pero... como importo la clase Item para tener una variable
+                // con el nombre del item?? estoy bloqueado :sigh:
             }
         }
     }
