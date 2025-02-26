@@ -4,9 +4,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -608,6 +605,7 @@ public class GestorPersonajes {
             scanner.nextLine(); // Espera que el usuario presione una tecla
             explorando.set(false); // 🔥 Detener autoplay cuando el usuario ingrese algo
             System.out.println("\n🛑 ¡Autoplay detenido por el usuario!"); }
+            scanner.close();
         });
         inputThread.start(); // Iniciar el hilo de escucha
 
@@ -670,7 +668,7 @@ public class GestorPersonajes {
                 }
             }
         }
-        System.out.println("\n🏆 ¡Exploración terminada!");
+
         explorando.set(false);
         // 🔥 Resumen de la exploración
         System.out.println(" ");
@@ -683,6 +681,7 @@ public class GestorPersonajes {
         System.out.println("🧪 Pociones encontradas: " + pocionesEncontradas);
         System.out.println("🎁 Objetos encontrados: " + objetosEncontrados);
         System.out.println("\n🏆 ¡Exploración terminada!");
+        explorando.set(false);
 
         // Guardar el estado del personaje después de la exploración
         guardarPersonajes(personajes);
