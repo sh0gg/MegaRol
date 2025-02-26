@@ -76,13 +76,13 @@ Finaliza el juego.
 
 ## 📂 Estructura del Proyecto  
 
-📂 src/
-│── MegaRol.java            # Punto de entrada del juego
-│── GestorPersonajes.java   # Gestión de personajes y combates
-│── Personaje.java          # Clase del personaje con atributos y métodos
-│── Item.java               # Clase de ítems para el inventario
-│── 📜 personajes.json      # Almacena los datos de los personajes
-│── 📜 items.json           # Contiene la lista de ítems disponibles
+- 📂 src/
+- │── MegaRol.java            # Punto de entrada del juego
+- │── GestorPersonajes.java   # Gestión de personajes y combates
+- │── Personaje.java          # Clase del personaje con atributos y métodos
+- │── Item.java               # Clase de ítems para el inventario
+- │── 📜 personajes.json      # Almacena los datos de los personajes
+- │── 📜 items.json           # Contiene la lista de ítems disponibles
 
 
 ## 🏆 Créditos  
